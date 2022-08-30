@@ -18,3 +18,7 @@ flutter pub get
 ```
 
 Performing Pub get also auto-generates the pubspec.lock file with a list of all packages pulled into the project and their version numbers.
+
+## Naming State classess
+
+By default, the name of the State class is prefixed with an underbar. Prefixing an identifier with an underscore enforces privacy in the Dart language and is a recommended best practice for State objects.
