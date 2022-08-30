@@ -16,3 +16,5 @@ samples, guidance on mobile development, and a full API reference.
 ```
 flutter pub get
 ```
+
+Performing Pub get also auto-generates the pubspec.lock file with a list of all packages pulled into the project and their version numbers.
