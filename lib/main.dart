@@ -1,8 +1,3 @@
-// Copyright 2018 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,50 +8,62 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startup Name Generator',
+      title: 'MyApp',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Startup Name Generator'),
+          title: const Text('MyApp'),
         ),
-        body: const Center(
-          child: RandomWords(),
-        ),
-      )
+        body: const HelloWorldWidget()
+      ),
     );
   }
 }
 
-class _RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18);
+class HelloWorldWidget extends StatefulWidget {
+  const HelloWorldWidget({Key? key}) : super(key: key);
+
+  @override
+  State<HelloWorldWidget> createState() => _HelloWorldWidgetState();
+}
+
+class _HelloWorldWidgetState extends State<HelloWorldWidget> {
+  int _clickCounter = 0;
+
+  void _handleClickHelloWorld() {
+    setState(() {
+      _clickCounter += 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(16.0),
-      itemBuilder: /*1*/ (context , i) {
-        if (i.isOdd) return const Divider(); /*2*/
-
-        final index = i ~/ 2; /*3*/
-        if (index >= _suggestions.length) {
-          _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-        }
-        return ListTile(
-          title: Text(
-            _suggestions[index].asPascalCase,
-            style: _biggerFont,
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextButton(
+            onPressed: _handleClickHelloWorld, 
+            child: const Text(
+              'Hello World!',
+              style: TextStyle(
+                fontSize: 50
+              ),
+              ) 
+          ),
+          SizedBox(
+            child: SizedBox(
+              child: Text(
+                '$_clickCounter',
+                style: const TextStyle(
+                  fontSize: 30
+                ),
+              )
+            ),
           )
-        );
-      }
+        ]
+      ),
     );
   }
-}
-
-class RandomWords extends StatefulWidget {
-  const RandomWords({super.key});
-
-  @override
-  State<RandomWords> createState() => _RandomWordsState();
 }
